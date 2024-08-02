@@ -41,7 +41,7 @@ def iniciar_rutas_productos(app):
             return jsonify({"error": "Producto no encontrado"}), 404
         
     @app.route('/productos/calorias/<id>', methods=['GET'])
-    @cliente_required
+    @login_required
     def getCalbyID(id: int):
         producto = db.session.query(Producto).filter_by(id=id).first()
         
