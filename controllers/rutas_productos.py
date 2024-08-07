@@ -13,7 +13,7 @@ def iniciar_rutas_productos(app):
         return make_response(render_template('productos.html', productos=productos))
     
     @app.route('/productos/id/<id>', methods=['GET'])
-    @login_required
+    #@login_required
     def getProductbyID(id: int):
         producto = db.session.query(Producto).filter_by(id=id).first()
         if producto:
@@ -27,7 +27,7 @@ def iniciar_rutas_productos(app):
             return jsonify({"error": "Producto no encontrado"}), 404
     
     @app.route('/productos/nombre/<nombre>', methods=['GET'])
-    @login_required
+    #@login_required
     def getProductbyName(nombre: str):
         producto = db.session.query(Producto).filter_by(nombre=nombre).first()
         if producto:
@@ -41,7 +41,7 @@ def iniciar_rutas_productos(app):
             return jsonify({"error": "Producto no encontrado"}), 404
         
     @app.route('/productos/calorias/<id>', methods=['GET'])
-    @login_required
+    #@login_required
     def getCalbyID(id: int):
         producto = db.session.query(Producto).filter_by(id=id).first()
         
@@ -54,7 +54,7 @@ def iniciar_rutas_productos(app):
             return jsonify({"error": "Producto no encontrado"}), 404
         
     @app.route('/productos/rentabilidad/<id>', methods=['GET'])
-    @admin_required
+    #@admin_required
     def getRentabilidadbyID(id: int):
         producto = db.session.query(Producto).filter_by(id=id).first()
         
@@ -67,7 +67,7 @@ def iniciar_rutas_productos(app):
             return jsonify({"error": "Producto no encontrado"}), 404
         
     @app.route('/productos/costo/<int:id>', methods=['GET'])
-    @empleado_required
+    #@empleado_required
     def getCostbyID(id: int):
         producto = db.session.query(Producto).filter_by(id=id).first()
         
@@ -80,7 +80,7 @@ def iniciar_rutas_productos(app):
             return jsonify({"error": "Producto no encontrado"}), 404
     
     @app.route('/ventas/id/<int:id>', methods=['GET', 'POST'])
-    @login_required
+    #@login_required
     def venderByID(id: int):
         producto = db.session.query(Producto).filter_by(id=id).first()
         if producto:
