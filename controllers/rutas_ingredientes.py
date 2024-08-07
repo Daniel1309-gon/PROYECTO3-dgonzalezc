@@ -9,13 +9,13 @@ from flask_login import login_required
 def iniciar_rutas_ingredientes(app):
       
     @app.route('/ingredientes', methods=['GET'])
-    #@empleado_required
+    @empleado_required
     def getIngredients():
         ingredientes = db.session.query(Ingrediente).all()
         return make_response(render_template('ingredientes.html', ingredientes=ingredientes))
     
     @app.route('/ingredientes/id/<int:id>', methods=['GET'])
-    #@empleado_required
+    @empleado_required
     def getIngredientByID(id: int):
         ingrediente = db.session.query(Ingrediente).filter_by(id=id).first()
         if ingrediente:
@@ -31,7 +31,7 @@ def iniciar_rutas_ingredientes(app):
             return jsonify({"error": "Ingrediente no encontrado"}), 404
         
     @app.route('/ingredientes/nombre/<nombre>', methods=['GET'])
-    #@empleado_required
+    @empleado_required
     def getIngredientByName(nombre: str):
         ingrediente = db.session.query(Ingrediente).filter_by(nombre=nombre).first()
         if ingrediente:
@@ -47,7 +47,7 @@ def iniciar_rutas_ingredientes(app):
             return jsonify({"error": "Ingrediente no encontrado"}), 404
         
     @app.route('/ingredientes/essano/<int:id>', methods=['GET'])
-    #@empleado_required
+    @empleado_required
     def getEsSano(id: int):
         ingrediente = db.session.query(Ingrediente).filter_by(id=id).first()
         if ingrediente:
@@ -60,7 +60,7 @@ def iniciar_rutas_ingredientes(app):
             return jsonify({"error": "Ingrediente no encontrado"}), 404
         
     @app.route('/ingredientes/abastecer/<int:id>', methods=['GET', 'POST'])
-    #@empleado_required
+    @empleado_required
     def abastecer(id: int):
         ingrediente = db.session.query(Ingrediente).filter_by(id=id).first()
         if ingrediente:
@@ -73,7 +73,7 @@ def iniciar_rutas_ingredientes(app):
             return jsonify({"error": "Producto no encontrado"}), 404
         
     @app.route('/ingredientes/renovar-inventario/<int:id>', methods=['GET', 'POST'])
-    #@empleado_required
+    @empleado_required
     def renovarInventario(id: int):
         ingrediente = db.session.query(Ingrediente).filter_by(id=id).first()
         if ingrediente:
